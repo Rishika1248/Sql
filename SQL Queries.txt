@@ -58,3 +58,85 @@ mysql> SELECT COUNT(*) AS total_students FROM Students;
 |              8 |
 +----------------+
 1 row in set (0.02 sec)
+
+mysql> CREATE TABLE Courses (roll_no INT, course_name VARCHAR(50));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Courses (roll_no, course_name) VALUES (101, 'Mathematics'), (102, 'Physics'), (103, 'Chemistry'), (104, 'Biology'), (105, 'Mathematics'), (106, 'Physics'), (107, 'Chemistry'), (108, 'Biology');
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Courses;
++---------+-------------+
+| roll_no | course_name |
++---------+-------------+
+|     101 | Mathematics |
+|     102 | Physics     |
+|     103 | Chemistry   |
+|     104 | Biology     |
+|     105 | Mathematics |
+|     106 | Physics     |
+|     107 | Chemistry   |
+|     108 | Biology     |
++---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Students.name, Students.roll_no, Courses.course_name FROM Students JOIN Courses ON Students.roll_no = Courses.roll_no;
++----------+---------+-------------+
+| name     | roll_no | course_name |
++----------+---------+-------------+
+| Rishika  |     101 | Mathematics |
+| Divya    |     102 | Physics     |
+| Sujitha  |     103 | Chemistry   |
+| Prasanna |     104 | Biology     |
+| Prajwala |     105 | Mathematics |
+| Sahitha  |     106 | Physics     |
+| Sumaja   |     107 | Chemistry   |
+| Roshini  |     108 | Biology     |
++----------+---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Students.roll_no, Students.name, Courses.course_name FROM Students INNER JOIN Courses ON Students.roll_no = Courses.roll_no;
++---------+----------+-------------+
+| roll_no | name     | course_name |
++---------+----------+-------------+
+|     101 | Rishika  | Mathematics |
+|     102 | Divya    | Physics     |
+|     103 | Sujitha  | Chemistry   |
+|     104 | Prasanna | Biology     |
+|     105 | Prajwala | Mathematics |
+|     106 | Sahitha  | Physics     |
+|     107 | Sumaja   | Chemistry   |
+|     108 | Roshini  | Biology     |
++---------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Students.roll_no, Students.name, Courses.course_name FROM Students LEFT JOIN Courses ON Students.roll_no = Courses.roll_no;
++---------+----------+-------------+
+| roll_no | name     | course_name |
++---------+----------+-------------+
+|     101 | Rishika  | Mathematics |
+|     102 | Divya    | Physics     |
+|     103 | Sujitha  | Chemistry   |
+|     104 | Prasanna | Biology     |
+|     105 | Prajwala | Mathematics |
+|     106 | Sahitha  | Physics     |
+|     107 | Sumaja   | Chemistry   |
+|     108 | Roshini  | Biology     |
++---------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Students.roll_no, Students.name, Courses.course_name FROM Students RIGHT JOIN Courses ON Students.roll_no = Courses.roll_no;
++---------+----------+-------------+
+| roll_no | name     | course_name |
++---------+----------+-------------+
+|     101 | Rishika  | Mathematics |
+|     102 | Divya    | Physics     |
+|     103 | Sujitha  | Chemistry   |
+|     104 | Prasanna | Biology     |
+|     105 | Prajwala | Mathematics |
+|     106 | Sahitha  | Physics     |
+|     107 | Sumaja   | Chemistry   |
+|     108 | Roshini  | Biology     |
++---------+----------+-------------+
+8 rows in set (0.00 sec)
